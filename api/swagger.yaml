@@ -1,0 +1,38 @@
+openapi: 3.0.0
+
+servers:
+  - url: http://localhost:4305
+    description: Docker Server
+
+info:
+  title: SegDB REST API Specification
+  description: This document is describing the protocol between clients and server.
+  version: "1.0.0"
+  contact:
+    email: oleg.bronzov@gmail.com
+
+paths:
+  /ping:
+    post:
+      summary: Health check.
+      operationId: ping
+      responses:
+        '200':
+          description: Return server info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  login:
+                    required:
+                      - status
+                      - uptime
+                    properties:
+                      sts:
+                        description: Server status - "OK"
+                        type: string
+                      uptime:
+                        description: Server uptime (in seconds)
+                        type: integer
+ 

@@ -1,0 +1,29 @@
+version: '3'
+services:
+  lb:
+    image: nginx:latest
+    ports:
+      - 127.0.0.1:4509:80
+    volumes:
+      - ../build/docker/lb.conf:/etc/nginx/conf.d/default.conf
+
+  node1:
+    build: 
+      context: ..
+      dockerfile: build/docker/Dockerfile
+    volumes:
+      - ../var:/go/src/app/var
+
+  node2:
+    build: 
+      context: ..
+      dockerfile: build/docker/Dockerfile
+    volumes:
+      - ../var:/go/src/app/var
+
+  node3:
+    build: 
+      context: ..
+      dockerfile: build/docker/Dockerfile
+    volumes:
+      - ../var:/go/src/app/var
